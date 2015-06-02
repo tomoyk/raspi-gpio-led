@@ -1,0 +1,8 @@
+#!/bin/sh
+cd /sys/class/gpio/gpio17
+for i in $(seq 1 5); do
+  echo 0 > value
+  sleep 0.5
+  echo 1 > value
+  sleep 0.5
+done

@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# setup gpio
+cd /sys/class/gpio/
+echo 17 > export
+echo out > gpio17/direction
+cd gpio17/
+
+# led loop
+for i in $(seq 1 5); do
+  echo 0 > value
+  sleep 1
+  echo 1 > value
+  sleep 1
+done
+
+# end setup
+echo 0 > value
+cd ../
+echo 17 > unexport

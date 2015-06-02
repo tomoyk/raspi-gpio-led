@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# setup gpio
+cd /sys/class/gpio/
+echo 17 > export
+echo 25 > export
+echo out > gpio17/direction
+echo out > gpio17/direction
+
+# led loop
+for i in $(seq 1 10); do
+  if test $(cat gpio25/value) -eq 0
+    then
+    echo 0 > gpio17/value
+    sleep 1
+  fi
+
+  if test $(cat gpio25/value) -eq 1
+    then
+    echo 1 > gpio17/value
+    sleep 1
+  fi
+done
+
+# end setup
+echo 0 > gpio17/value
+echo 0 > gpio25/value
+echo 17 > unexport
+echo 25 > unexport
